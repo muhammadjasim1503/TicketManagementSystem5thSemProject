@@ -1,0 +1,1 @@
+<img src="{{ asset('storage/uploads/'.$image) }}" alt="" title="" width="100%">

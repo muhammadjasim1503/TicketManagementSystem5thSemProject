@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->string('image')->nullable();
+            $table->string('is_admin');
             $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

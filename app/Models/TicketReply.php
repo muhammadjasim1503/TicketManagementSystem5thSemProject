@@ -12,5 +12,6 @@ class TicketReply extends Model
     protected $fillable = [
         'description',
         'image',
+        'is_admin',
     ];
 }

@@ -49,14 +49,16 @@ class TicketController extends Controller
 
       $replies = Ticket::find($id)->ticket_replies;
       // dd($replies);
-
+      $ticket = Ticket::find($id);
+      // dd($ticket);
       // $replies = DB::table('ticket_replies')
       //         ->where('ticket_id', '=', $id)
       //         ->get();
       // dd($replies);
       return view('ticket-reply')
                   ->with('replies', $replies)
-                  ->with('ticket_id', $id);
+                  ->with('ticket_id', $id)
+                  ->with('ticket', $ticket);
     }
 
     public function store(Request $request){
@@ -179,8 +181,10 @@ class TicketController extends Controller
       $reply = $ticket->ticket_replies()->create([
         'description' => $request->msg,
         'image' => $fileNameToStore,
+        'is_admin' => auth()->user()->is_admin,
       ]);
 
+      // Storing the file into the storage folder
       if ($toBeUploaded) {
         $path = $request->file('image')->storeAs('public/uploads/', $fileNameToStore);
       }

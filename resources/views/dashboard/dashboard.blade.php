@@ -44,7 +44,13 @@
                     @foreach ($tickets as $ticket)
                       <div class="row mb-3">
                         <div class="col-md" style = "line-height: 2;" >
-                          {{__('Image:')}} {{$ticket->image}}<br>
+                          @if ($ticket->image)
+                          <a href="{{ route('show-image',$ticket->image) }}">
+                            {{__('Image:')}} {{$ticket->image}}<br>
+                          </a>
+                          @else
+                            {{__('Image:')}} {{$ticket->image}}<br>
+                          @endif
                           {{__('Title:') }} {{$ticket->title}} {{__('Subject:')}} {{$ticket->subject}} <br>
                           {{__('Description:')}} {{$ticket->description}} <br>
                           <a href="{{ route('ticket-reply',['id' => $ticket->id]) }}">
@@ -55,27 +61,25 @@
                         </div>
                       </div>
                       <hr>
-                     @endforeach
-
-                   @else
-
-                   @foreach ($users as $user)
-                     <div class="row mb-3">
-                       <div class="col-md" style = "line-height: 2;" >
-                         {{__('Name:')}} {{$user->name}}<br>
-                         <a href="{{ route('dashboard-ticket', ['id' => $user->id] ) }}">
-                           <button class="btn btn-primary mt-1">
-                             {{ __('View Tickets') }}
-                           </button>
-                         </a>
-                       </div>
-                     </div>
-                    <hr>
                     @endforeach
 
-                   @endif
+                    @else
 
+                    @foreach ($users as $user)
+                     <div class="row mb-3">
+                        <div class="col-md" style = "line-height: 2;" >
+                          {{__('Name:')}} {{$user->name}}<br>
+                          <a href="{{ route('dashboard-ticket', ['id' => $user->id] ) }}">
+                            <button class="btn btn-primary mt-1">
+                              {{ __('View Tickets') }}
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <hr>
+                      @endforeach
 
+                    @endif
 
                 </div>
             </div>

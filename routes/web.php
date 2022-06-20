@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\TicketController;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +43,9 @@ Route::post('/send-ticket-reply/{id}', [TicketController::class, 'sendReply'])->
 
 //Home routes
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Dashboard routes
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard-ticket/{id}', [DashboardController::class, 'showDashboadTicket'])->name('dashboard-ticket');
 Route::post('/close-ticket/{id}', [DashboardController::class, 'closeTicket'])->name('close-ticket');
+Route::get('/show-image/{image}',[DashboardController::class, 'showImage'])->name('show-image');

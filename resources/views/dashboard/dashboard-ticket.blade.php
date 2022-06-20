@@ -23,7 +23,13 @@
                     @foreach ($tickets as $ticket)
                     <div class="row mb-3">
                       <div class="col-md" style = "line-height: 2;" >
-                        {{__('Image:')}} {{$ticket->image}}<br>
+                        @if ($ticket->image)
+                          <a href="{{ route('show-image',$ticket->image) }}">
+                            {{__('Image:')}} {{$ticket->image}}<br>
+                          </a>
+                          @else
+                            {{__('Image:')}} {{$ticket->image}}<br>
+                          @endif
                         {{__('Title:') }} {{$ticket->title}} {{__('Subject:')}} {{$ticket->subject}} <br>
                         {{__('Description:')}} {{$ticket->description}} <br>
 

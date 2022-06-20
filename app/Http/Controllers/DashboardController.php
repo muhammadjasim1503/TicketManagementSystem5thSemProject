@@ -41,4 +41,9 @@ class DashboardController extends Controller
       return back();
     }
 
+    public function showImage($image)
+    {
+      return view('image')->with('image',$image);
+    }
+
 }
